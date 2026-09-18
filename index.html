@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bowlmate - Healthy & Calorie-Counted Salad Bowls</title>
-    <!-- Google Fonts for Modern Typography -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS Reset & Variables */
+        /* Reset & Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -28,9 +28,10 @@
             color: var(--text-color);
             line-height: 1.6;
             background-color: #fff;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* Header & Navigation */
+        /* Header & Mobile Nav */
         header {
             background-color: #fff;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
@@ -45,27 +46,41 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.2rem 2rem;
+            padding: 1rem 1.5rem;
+            position: relative;
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: var(--primary-color);
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .logo span {
             color: var(--accent-color);
         }
 
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
+            align-items: center;
         }
 
         .nav-links a {
@@ -82,86 +97,76 @@
         .btn {
             background-color: var(--primary-color);
             color: #fff;
-            padding: 0.6rem 1.4rem;
+            padding: 0.7rem 1.4rem;
             border-radius: 25px;
             text-decoration: none;
             font-weight: 600;
-            transition: background 0.3s, transform 0.2s;
             display: inline-block;
             border: none;
             cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: var(--dark-color);
-            transform: translateY(-2px);
+            text-align: center;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                         url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-            height: 75vh;
+            min-height: 70vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: #fff;
-            padding: 0 1rem;
-        }
-
-        .hero-content {
-            max-width: 800px;
+            padding: 3rem 1.5rem;
         }
 
         .hero h1 {
-            font-size: 3.2rem;
+            font-size: 2.5rem;
             margin-bottom: 1rem;
+            line-height: 1.2;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
             font-weight: 300;
         }
 
         /* Sections */
         .section {
-            padding: 4rem 2rem;
+            padding: 3rem 1.5rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: var(--primary-color);
-            margin-bottom: 2.5rem;
-            position: relative;
+            margin-bottom: 2rem;
         }
 
         .section-title::after {
             content: '';
-            width: 60px;
+            width: 50px;
             height: 4px;
             background-color: var(--accent-color);
             display: block;
-            margin: 10px auto 0;
+            margin: 8px auto 0;
             border-radius: 2px;
         }
 
-        /* Menu Section */
+        /* Menu Grid */
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .menu-card {
             background: #fff;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
             border: 1px solid #e0e0e0;
             display: flex;
             flex-direction: column;
@@ -175,18 +180,18 @@
         }
 
         .menu-card-body {
-            padding: 1.5rem;
+            padding: 1.2rem;
         }
 
         .menu-card-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
             margin-bottom: 0.5rem;
         }
 
         .menu-card-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--primary-color);
         }
@@ -198,76 +203,75 @@
             padding: 2px 8px;
             border-radius: 12px;
             font-weight: 600;
+            white-space: nowrap;
         }
 
         .ingredients-list {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #555;
             margin: 0.8rem 0;
         }
 
         .dressing-info {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             background-color: var(--light-bg);
             padding: 6px 10px;
             border-left: 3px solid var(--primary-color);
-            margin-bottom: 1rem;
-            border-radius: 0 4px 4px 0;
+            margin-bottom: 0.8rem;
         }
 
-        /* Macros Table */
+        /* Macros Grid */
         .macros-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             background-color: #f9f9f9;
             border-top: 1px solid #eee;
-            padding: 0.8rem;
+            padding: 0.6rem 0.4rem;
             text-align: center;
         }
 
         .macro-item span {
             display: block;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             color: #777;
             text-transform: uppercase;
         }
 
         .macro-item strong {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             color: var(--dark-color);
         }
 
-        /* Features/About Section */
+        /* Features / About Section */
         .about-section {
             background-color: var(--light-bg);
         }
 
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            text-align: center;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
         }
 
         .feature-box {
-            padding: 2rem;
+            padding: 1.5rem;
             background: #fff;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            text-align: center;
         }
 
         .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
         }
 
-        /* Order Form */
+        /* Form */
         .order-form {
             max-width: 600px;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 1.2rem;
+            gap: 1rem;
         }
 
         .form-group {
@@ -276,8 +280,9 @@
         }
 
         .form-group label {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             font-weight: 600;
+            font-size: 0.9rem;
         }
 
         .form-group input, .form-group select, .form-group textarea {
@@ -285,48 +290,90 @@
             border: 1px solid #ccc;
             border-radius: 6px;
             font-size: 1rem;
+            width: 100%;
         }
 
-        /* Footer */
         footer {
             background-color: var(--dark-color);
             color: #fff;
             text-align: center;
-            padding: 2rem 1rem;
+            padding: 1.5rem 1rem;
+            font-size: 0.85rem;
         }
 
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero h1 { font-size: 2.2rem; }
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                padding: 1.5rem;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                gap: 1.2rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-btn-desktop {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .macros-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header / Navbar -->
+    <!-- Header -->
     <header>
         <nav>
             <a href="#" class="logo">🥗 Bowl<span>mate</span></a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">Our Promise</a></li>
-                <li><a href="#menu">Menu & Macros</a></li>
-                <li><a href="#order">Order Now</a></li>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+                <li><a href="#about" onclick="toggleMenu()">Our Promise</a></li>
+                <li><a href="#menu" onclick="toggleMenu()">Menu & Macros</a></li>
+                <li><a href="#order" onclick="toggleMenu()">Order Now</a></li>
             </ul>
-            <a href="#order" class="btn">Order Online</a>
+            <a href="#order" class="btn nav-btn-desktop">Order Online</a>
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero" id="home">
-        <div class="hero-content">
+        <div>
             <h1>Calorie-Counted, Precision-Portioned Bowls</h1>
             <p>100% Gram-scale measured ingredients with macro transparency for gym-goers, busy professionals, and clean eaters.</p>
             <a href="#menu" class="btn">View Menu & Calories</a>
         </div>
     </section>
 
-    <!-- About / Quality Promise Section -->
+    <!-- About Section -->
     <section class="about-section" id="about">
         <div class="section">
             <h2 class="section-title">The Bowlmate Standard</h2>
@@ -334,17 +381,17 @@
                 <div class="feature-box">
                     <div class="feature-icon">⚖️</div>
                     <h3>Gram-Scale Precision</h3>
-                    <p>Every bowl is assembled directly on calibrated digital scales to guarantee exact macro compliance.</p>
+                    <p>Every bowl is assembled on digital scales for macro compliance.</p>
                 </div>
                 <div class="feature-box">
                     <div class="feature-icon">🧼</div>
                     <h3>3-Stage Wash</h3>
-                    <p>Vegetables undergo clear water rinsing, 5-minute vinegar/ozonated baths, and final clean water sprays.</p>
+                    <p>Rinsed, vinegar/ozonated soaked, and clean-water sprayed.</p>
                 </div>
                 <div class="feature-box">
                     <div class="feature-icon">🥗</div>
                     <h3>Crisp Guarantee</h3>
-                    <p>Dressings are never poured on leaves; always served in a separate 40g side tub to prevent wilting.</p>
+                    <p>Dressings are always served in a separate 40g side tub.</p>
                 </div>
             </div>
         </div>
@@ -352,10 +399,10 @@
 
     <!-- Menu Section -->
     <section class="section" id="menu">
-        <h2 class="section-title">Our Signature Salad Bowls</h2>
+        <h2 class="section-title">Our Signature Bowls</h2>
         <div class="menu-grid">
             
-            <!-- Salad 1: High-Protein Power Bowl -->
+            <!-- Salad 1 -->
             <div class="menu-card">
                 <div>
                     <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="High-Protein Power Bowl">
@@ -364,12 +411,8 @@
                             <h3 class="menu-card-title">High-Protein Power Bowl</h3>
                             <span class="weight-badge">390g Net</span>
                         </div>
-                        <p class="ingredients-list">
-                            <strong>Ingredients:</strong> Crisp Romaine & Lollo Rosso, Herb-Grilled Chicken / Paneer, Sprouted Moong & Chickpeas, Diced Cucumbers, Sweet Corn, Hard-Boiled Egg Slices, Toasted Pumpkin & Flax Seeds.
-                        </p>
-                        <div class="dressing-info">
-                            <strong>Dressing:</strong> Zesty Lemon-Mint Vinaigrette (40g side tub)
-                        </div>
+                        <p class="ingredients-list"><strong>Ingredients:</strong> Romaine & Lollo Rosso, Herb Chicken/Paneer, Sprouted Moong & Chickpeas, Cucumbers, Sweet Corn, Egg Slices, Pumpkin & Flax Seeds.</p>
+                        <div class="dressing-info"><strong>Dressing:</strong> Zesty Lemon-Mint (40g side)</div>
                     </div>
                 </div>
                 <div class="macros-grid">
@@ -380,7 +423,7 @@
                 </div>
             </div>
 
-            <!-- Salad 2: Mediterranean Greek Salad -->
+            <!-- Salad 2 -->
             <div class="menu-card">
                 <div>
                     <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80" alt="Mediterranean Greek Salad">
@@ -389,12 +432,8 @@
                             <h3 class="menu-card-title">Mediterranean Greek Salad</h3>
                             <span class="weight-badge">330g Net</span>
                         </div>
-                        <p class="ingredients-list">
-                            <strong>Ingredients:</strong> Crisp Romaine & Iceberg, English Cucumber, Cherry Tomatoes, Tricolor Bell Peppers, Red Onion, Imported Feta Cheese Blocks, Kalamata Black Olives & Wild Greek Oregano.
-                        </p>
-                        <div class="dressing-info">
-                            <strong>Dressing:</strong> Greek Oregano-EVOO Vinaigrette (40g side tub)
-                        </div>
+                        <p class="ingredients-list"><strong>Ingredients:</strong> Romaine & Iceberg, Cucumber, Cherry Tomatoes, Bell Peppers, Red Onion, Feta Cheese, Kalamata Olives & Oregano.</p>
+                        <div class="dressing-info"><strong>Dressing:</strong> Greek Oregano-EVOO (40g side)</div>
                     </div>
                 </div>
                 <div class="macros-grid">
@@ -405,21 +444,17 @@
                 </div>
             </div>
 
-            <!-- Salad 3: Zesty Rocca & Pomegranate Salad -->
+            <!-- Salad 3 -->
             <div class="menu-card">
                 <div>
-                    <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80" alt="Zesty Rocca & Pomegranate Salad">
+                    <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80" alt="Zesty Rocca & Pomegranate">
                     <div class="menu-card-body">
                         <div class="menu-card-header">
                             <h3 class="menu-card-title">Zesty Rocca & Pomegranate</h3>
                             <span class="weight-badge">300g Net</span>
                         </div>
-                        <p class="ingredients-list">
-                            <strong>Ingredients:</strong> Fresh Ooty Baby Rocca (Rocket), Hand-deseeded Pomegranate Pearls, Cucumber Ribbons, Cherry Tomatoes, Toasted Walnut Halves, Shaved Parmesan Cheese.
-                        </p>
-                        <div class="dressing-info">
-                            <strong>Dressing:</strong> Aged Balsamic Reduction (40g side tub)
-                        </div>
+                        <p class="ingredients-list"><strong>Ingredients:</strong> Baby Rocca, Pomegranate Pearls, Cucumber Ribbons, Cherry Tomatoes, Toasted Walnuts, Shaved Parmesan.</p>
+                        <div class="dressing-info"><strong>Dressing:</strong> Aged Balsamic (40g side)</div>
                     </div>
                 </div>
                 <div class="macros-grid">
@@ -430,21 +465,17 @@
                 </div>
             </div>
 
-            <!-- Salad 4: Roasted Paneer & Quinoa Detox Bowl -->
+            <!-- Salad 4 -->
             <div class="menu-card">
                 <div>
                     <img src="https://images.unsplash.com/photo-1515543237350-b3eea1ec8082?auto=format&fit=crop&w=600&q=80" alt="Roasted Paneer & Quinoa Detox Bowl">
                     <div class="menu-card-body">
                         <div class="menu-card-header">
-                            <h3 class="menu-card-title">Roasted Paneer & Quinoa Detox</h3>
+                            <h3 class="menu-card-title">Paneer & Quinoa Detox</h3>
                             <span class="weight-badge">380g Net</span>
                         </div>
-                        <p class="ingredients-list">
-                            <strong>Ingredients:</strong> Shredded Iceberg & Baby Spinach, Steamed Fluffy Quinoa, Tandoori Herb-Grilled Paneer, Steamed Broccoli, Sweet Bell Peppers, Toasted Chia & Sunflower Mix.
-                        </p>
-                        <div class="dressing-info">
-                            <strong>Dressing:</strong> Creamy Tahini-Garlic (40g side tub)
-                        </div>
+                        <p class="ingredients-list"><strong>Ingredients:</strong> Iceberg & Spinach, Steamed Quinoa, Tandoori Paneer, Steamed Broccoli, Bell Peppers, Chia & Sunflower Seeds.</p>
+                        <div class="dressing-info"><strong>Dressing:</strong> Creamy Tahini-Garlic (40g side)</div>
                     </div>
                 </div>
                 <div class="macros-grid">
@@ -458,31 +489,31 @@
         </div>
     </section>
 
-    <!-- Order Form Section -->
+    <!-- Order Section -->
     <section class="about-section" id="order">
         <div class="section">
             <h2 class="section-title">Order Your Bowl</h2>
             <form class="order-form" onsubmit="event.preventDefault(); alert('Thank you for ordering with Bowlmate! We will contact you shortly to confirm delivery.');">
                 <div class="form-group">
                     <label for="name">Your Name</label>
-                    <input type="text" id="name" placeholder="Enter your full name" required>
+                    <input type="text" id="name" placeholder="Enter full name" required>
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone / WhatsApp Number</label>
-                    <input type="tel" id="phone" placeholder="Enter your mobile number" required>
+                    <label for="phone">Phone / WhatsApp</label>
+                    <input type="tel" id="phone" placeholder="Enter phone number" required>
                 </div>
                 <div class="form-group">
                     <label for="salad">Select Your Bowl</label>
                     <select id="salad">
-                        <option value="power-bowl">High-Protein Power Bowl (430 kcal | 390g)</option>
-                        <option value="greek">Mediterranean Greek Salad (310 kcal | 330g)</option>
-                        <option value="rocca">Zesty Rocca & Pomegranate (280 kcal | 300g)</option>
-                        <option value="detox">Roasted Paneer & Quinoa Detox (440 kcal | 380g)</option>
+                        <option value="power-bowl">High-Protein Power Bowl (430 kcal)</option>
+                        <option value="greek">Mediterranean Greek Salad (310 kcal)</option>
+                        <option value="rocca">Zesty Rocca & Pomegranate (280 kcal)</option>
+                        <option value="detox">Roasted Paneer & Quinoa Detox (440 kcal)</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="notes">Customizations or Delivery Notes</label>
-                    <textarea id="notes" rows="3" placeholder="E.g., Swap chicken for paneer, call upon delivery, etc."></textarea>
+                    <label for="notes">Instructions / Customizations</label>
+                    <textarea id="notes" rows="3" placeholder="Swap chicken for paneer, etc."></textarea>
                 </div>
                 <button type="submit" class="btn">Place Order</button>
             </form>
@@ -491,8 +522,15 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Bowlmate Kitchen. All rights reserved. | FSSAI Compliant & Gram-Scale Precision</p>
+        <p>&copy; 2026 Bowlmate Kitchen. All rights reserved.</p>
     </footer>
 
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
