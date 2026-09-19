@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bowlmate - Healthy & Calorie-Counted Salad Bowls</title>
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+    <!-- Load Cinzel and Poppins Fonts from Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         /* Reset & Base Styles */
         * {
@@ -16,22 +15,39 @@
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
+:root {
+    --primary-color: #0d2b45;   /* Brand Navy Blue */
+    --accent-color: #52792c;    /* Brand Leaf Green */
+    --dark-color: #081c2e;
+    --light-bg: #f7f9f6;
+    --text-color: #333;
+}
 
-        :root {
-            --primary-color: #2e7d32;
-            --secondary-color: #81c784;
-            --accent-color: #fbc02d;
-            --dark-color: #1b5e20;
-            --light-bg: #f4f9f4;
-            --text-color: #333;
-        }
+/* Updated Brand Logo Styling */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
 
-        body {
-            color: var(--text-color);
-            line-height: 1.6;
-            background-color: #fff;
-            -webkit-tap-highlight-color: transparent;
-        }
+.logo-img {
+    height: 42px;
+    width: auto;
+    object-fit: contain;
+}
+
+.logo-text {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: 2px;
+}
+
+.logo-text span {
+    color: var(--accent-color);
+}
 
         /* Header & Mobile Nav */
         header {
@@ -350,7 +366,10 @@
     <!-- Header -->
     <header>
         <nav>
-            <a href="#" class="logo">🥗 Bowl<span>mate</span></a>
+            <a href="#" class="logo-container">
+    <img src="logo.png" alt="BowlMate Icon" class="logo-img">
+    <span class="logo-text">BOWL <span>MATE</span></span>
+</a>
             <div class="menu-toggle" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
